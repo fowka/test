@@ -7,3 +7,7 @@ body {
 h1, input, button {
   margin-bottom: 1rem;
 }
+
+button[type=submit] {
+  padding: 0.25rem 2rem 0.5rem;
+}

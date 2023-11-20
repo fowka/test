@@ -1,6 +1,43 @@
 {% extends 'base.html.twig' %}
-{% block title %}Тестовая страница{% endblock %}
+{% block title %}Создание отчёта{% endblock %}
 {% block body %}
-    <h1>Тестовая страница</h1>
-    <p><a href="{{ path('app_user_logout') }}">Выйти</a></p>
+    <h1>Создание отчёта</h1>
+    <form action="{{ path('report_index') }}" method="post">
+        <table class="table table-borderless w-auto">
+            <tbody>
+            <tr>
+                <td><label class="align-middle" for="material_number">Материал (номер)</label></td>
+                <td><input class="form-control" id="material_number"></td>
+                <td><button type="button" class="btn btn-light" data-id="material_number">...</button></td>
+            </tr>
+            <tr>
+                <td><label class="align-middle" for="date">Дата создания</label></td>
+                <td><input class="form-control" id="date" type="date"></td>
+                <td><button type="button" class="btn btn-light" data-id="date">...</button></td>
+            </tr>
+            <tr>
+                <td><label class="align-middle" for="group">Группа</label></td>
+                <td><input class="form-control" id="group"></td>
+                <td><button type="button" class="btn btn-light" data-id="group">...</button></td>
+            </tr>
+            <tr>
+                <td><label class="align-middle" for="user">Имя пользователя</label></td>
+                <td><input class="form-control" id="user"></td>
+                <td><button type="button" class="btn btn-light" data-id="user">...</button></td>
+            </tr>
+            <tr>
+                <td><label class="align-middle" for="material_type">Вид материала</label></td>
+                <td><input class="form-control" id="material_type"></td>
+                <td><button type="button" class="btn btn-light" data-id="material_type">...</button></td>
+            </tr>
+            <tr>
+                <td><label class="align-middle" for="name">Наименование</label></td>
+                <td><input class="form-control" id="name"></td>
+                <td><button type="button" class="btn btn-light" data-id="name">...</button></td>
+            </tr>
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary">Открыть отчёт</button>
+    </form>
+    <form action="{{ path('app_user_logout') }}"><button type="submit" class="btn btn-dark">Выйти</button></form>
 {% endblock %}
