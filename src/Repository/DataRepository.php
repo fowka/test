@@ -21,6 +21,19 @@ class DataRepository extends ServiceEntityRepository
         parent::__construct($registry, Data::class);
     }
 
+    /**
+     * @param string $name
+     * @return Data[]
+     */
+    public function findByName(string $name) {
+        return $this
+            ->createQueryBuilder('d')
+            ->andWhere('d.MAKTX LIKE :name')
+            ->setParameter('name', '%' . $name . '%')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Data[] Returns an array of Data objects
 //     */

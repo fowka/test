@@ -1,0 +1,13 @@
+{% if rows %}
+    <table class="table table-striped w-auto">
+        <tbody>
+        {% for row in rows %}
+            <tr>
+                <td><a href="#">{{ row.MAKTX }}</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Результатов не найдено</p>
+{% endif %}
