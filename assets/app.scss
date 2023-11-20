@@ -1,1 +1,9 @@
 @import "~bootstrap/scss/bootstrap";
+
+h1 {
+  text-align: center;
+}
+
+h1, input, button {
+  margin-bottom: 1rem;
+}
