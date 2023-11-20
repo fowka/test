@@ -30,4 +30,17 @@
     {% else %}
         <p>Результатов не найдено</p>
     {% endif %}
+    {% if pages|length > 1 %}
+        <p class="pagination">Страницы:
+            {% for page, url in pages %}
+                <span>
+                {% if page == current %}
+                    {{ page }}
+                {% else %}
+                    <a href="{{ url }}">{{ page }}</a>
+                {% endif %}
+            </span>
+            {% endfor %}
+        </p>
+    {% endif %}
 {% endblock %}
