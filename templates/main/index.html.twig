@@ -2,44 +2,44 @@
 {% block title %}Создание отчёта{% endblock %}
 {% block body %}
     <h1>Создание отчёта</h1>
-    <form action="{{ path('report_index') }}" method="post">
+    <form action="{{ path('report_index') }}">
         <table class="table table-borderless w-auto">
             <tbody>
             <tr>
-                <td><label class="align-middle" for="material_number">Материал (номер)</label></td>
-                <td><input class="form-control" id="material_number"></td>
-                <td><button type="button" class="btn btn-light" data-id="material_number">...</button></td>
+                <td><label class="align-middle" for="MATNR">Материал (номер)</label></td>
+                <td><input class="form-control" id="MATNR" name="MATNR"></td>
+                <td><button type="button" class="btn btn-light" data-id="MATNR">...</button></td>
             </tr>
             <tr>
-                <td><label class="align-middle" for="date">Дата создания</label></td>
-                <td><input class="form-control" id="date" type="date"></td>
-                <td><button type="button" class="btn btn-light" data-id="date">...</button></td>
+                <td><label class="align-middle" for="ERSDA">Дата создания</label></td>
+                <td><input class="form-control" id="ERSDA" name="ERSDA"></td>
+                <td><button type="button" class="btn btn-light" data-id="ERSDA">...</button></td>
             </tr>
             <tr>
-                <td><label class="align-middle" for="group">Группа</label></td>
-                <td><input class="form-control" id="group"></td>
-                <td><button type="button" class="btn btn-light" data-id="group">...</button></td>
+                <td><label class="align-middle" for="MATKL">Группа</label></td>
+                <td><input class="form-control" id="MATKL" name="MATKL"></td>
+                <td><button type="button" class="btn btn-light" data-id="MATKL">...</button></td>
             </tr>
             <tr>
-                <td><label class="align-middle" for="user">Имя пользователя</label></td>
-                <td><input class="form-control" id="user"></td>
-                <td><button type="button" class="btn btn-light" data-id="user">...</button></td>
+                <td><label class="align-middle" for="ERNAM">Имя пользователя</label></td>
+                <td><input class="form-control" id="ERNAM" name="ERNAM"></td>
+                <td><button type="button" class="btn btn-light" data-id="ERNAM">...</button></td>
             </tr>
             <tr>
-                <td><label class="align-middle" for="material_type">Вид материала</label></td>
-                <td><input class="form-control" id="material_type"></td>
-                <td><button type="button" class="btn btn-light" data-id="material_type">...</button></td>
+                <td><label class="align-middle" for="MTART">Вид материала</label></td>
+                <td><input class="form-control" id="MTART" name="MTART"></td>
+                <td><button type="button" class="btn btn-light" data-id="MTART">...</button></td>
             </tr>
             <tr>
-                <td><label class="align-middle" for="name">Наименование</label></td>
+                <td><label class="align-middle" for="MAKTX">Наименование</label></td>
                 <td>
-                    <input class="form-control" id="name">
+                    <input class="form-control" id="MAKTX" name="MAKTX">
                     <div class="form-check">
                         <input class="form-check-input" id="name_suggestion" type="checkbox" checked>
                         <label for="name_suggestion" class="form-check-label">Гибкий поиск</label>
                     </div>
                 </td>
-                <td><button type="button" class="btn btn-light" data-id="name">...</button></td>
+                <td><button type="button" class="btn btn-light" data-id="MAKTX">...</button></td>
             </tr>
             </tbody>
         </table>

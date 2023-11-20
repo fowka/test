@@ -2,4 +2,32 @@
 {% block title %}Отчёт{% endblock %}
 {% block body %}
     <h1>Отчёт</h1>
+    {% if rows %}
+        <table class="table table-striped w-auto">
+            <thead>
+            <tr>
+                <th>Материал (номер)</th>
+                <th>Дата создания (YYYYMMDD)</th>
+                <th>Группа</th>
+                <th>Имя пользователя</th>
+                <th>Вид материала</th>
+                <th>Наименование</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in rows %}
+                <tr>
+                    <td>{{ row.MATNR }}</td>
+                    <td>{{ row.ERSDA }}</td>
+                    <td>{{ row.MATKL }}</td>
+                    <td>{{ row.ERNAM }}</td>
+                    <td>{{ row.MTART }}</td>
+                    <td>{{ row.MAKTX }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Результатов не найдено</p>
+    {% endif %}
 {% endblock %}
