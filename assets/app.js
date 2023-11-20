@@ -6,4 +6,6 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
+// window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle.js');
+import bootstrap from 'bootstrap/dist/js/bootstrap.bundle';
 import './app.scss';
