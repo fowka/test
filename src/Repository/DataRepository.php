@@ -34,6 +34,21 @@ class DataRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * @param array $parameters
+     * @return Data[]
+     */
+/*
+    public function findByExtendedParameters(array $parameters) {
+        return $this
+            ->createQueryBuilder('d')
+            ->andWhere('d.MAKTX LIKE :name')
+            ->setParameter('name', '%' . $name . '%')
+            ->getQuery()
+            ->getResult();
+    }
+*/
+
 //    /**
 //     * @return Data[] Returns an array of Data objects
 //     */
