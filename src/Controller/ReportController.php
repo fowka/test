@@ -22,8 +22,8 @@ class ReportController extends AbstractController
             if ($key == self::PAGE_SLUG) {
                 continue;
             }
-            if ($value) {
-                $parameters[$key] = $value;
+            if (!empty($value['main'])) {
+                $parameters[$key] = $value['main'];
             }
         }
         $rowsAll = $dataRepository->findBy($parameters);
