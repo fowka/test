@@ -10,10 +10,16 @@
             {% include 'main/simple-field.html.twig' with { slug: 'MATKL', label: 'Группа' } only %}
             {% include 'main/simple-field.html.twig' with { slug: 'ERNAM', label: 'Имя пользователя' } only %}
             {% include 'main/simple-field.html.twig' with { slug: 'MTART', label: 'Вид материала' } only %}
-            {% include 'main/name-field.html.twig' with { slug: 'MAKTX', label: 'Наименование' } only %}
+            {% include 'main/simple-field.html.twig' with { slug: 'MAKTX', label: 'Наименование', suggestion: true } only %}
             {% include 'main/search-result.html.twig' %}
             </tbody>
         </table>
+        {% include 'main/extended-field.html.twig' with { slug: 'MATNR', label: 'Материал (номер)' } only %}
+        {% include 'main/extended-field.html.twig' with { slug: 'ERSDA', label: 'Дата создания' } only %}
+        {% include 'main/extended-field.html.twig' with { slug: 'MATKL', label: 'Группа' } only %}
+        {% include 'main/extended-field.html.twig' with { slug: 'ERNAM', label: 'Имя пользователя' } only %}
+        {% include 'main/extended-field.html.twig' with { slug: 'MTART', label: 'Вид материала' } only %}
+        {% include 'main/extended-field.html.twig' with { slug: 'MAKTX', label: 'Наименование', suggestion: true } only %}
         <button type="submit" class="btn btn-primary">Открыть отчёт</button>
     </form>
     <form action="{{ path('app_user_logout') }}"><button type="submit" class="btn btn-dark">Выйти</button></form>

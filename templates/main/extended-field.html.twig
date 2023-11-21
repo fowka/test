@@ -1,0 +1,26 @@
+<table class="table table-borderless w-auto">
+    <thead>
+    <tr>
+        <th class="py-0" colspan="2">Расширенный фильтр для поля «{{ label }}»</th>
+    </tr>
+    <tr>
+        <th class="py-0" colspan="2">Значение или диапазон значений</th>
+    </tr>
+    <tr>
+        <th class="py-0">С</th>
+        <th class="py-0">По</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for row in 0..9 %}
+        <tr>
+            <td>
+                <label><input class="form-control" id="{{ slug }}" name="{{ slug }}[extended][{{ row }}][from]"></label>
+            </td>
+            <td>
+                <label><input class="form-control" id="{{ slug }}" name="{{ slug }}[extended][{{ row }}][to]"></label>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
