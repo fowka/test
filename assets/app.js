@@ -12,6 +12,33 @@ import './app.scss';
 
 let nameSuggestion = document.getElementById('name_suggestion');
 if (nameSuggestion) {
+    function debounce(callee, timeoutMs) {
+        return function perform(...args) {
+            let previousCall = this.lastCall
+            this.lastCall = Date.now()
+            if (previousCall && this.lastCall - previousCall <= timeoutMs) {
+                clearTimeout(this.lastCallTimer)
+            }
+            this.lastCallTimer = setTimeout(() => callee(...args), timeoutMs)
+        }
+    }
+    function searchSuggestions(e) {
+        if (nameSuggestionStatus) {
+            if (searchField.value) {
+                let url = encodeURI('/search?search=' + searchField.value);
+                fetch(url)
+                    .then(function (response) {
+                        return response.text()
+                    })
+                    .then(function (html) {
+                        searchResult.innerHTML = html;
+                        addSearchResultListeners();
+                    });
+            } else {
+                searchResult.innerHTML = '';
+            }
+        }
+    }
     function addSearchResultListeners() {
         searchResult.querySelectorAll('td a').forEach(function (node) {
             node.addEventListener('click', function (e) {
@@ -31,22 +58,6 @@ if (nameSuggestion) {
     });
     let searchResult = document.getElementById('search-result');
     let searchField = document.getElementById('MAKTX');
-    searchField.addEventListener('input', function (e) {
-        if (nameSuggestionStatus) {
-            if (searchField.value) {
-                let url = encodeURI('/search?search=' + searchField.value);
-                fetch(url)
-                    .then(function (response) {
-                        return response.text()
-                    })
-                    .then(function (html) {
-                        searchResult.innerHTML = html;
-                        addSearchResultListeners();
-                    });
-            } else {
-                searchResult.innerHTML = '';
-            }
-        }
-
-    });
+    const debouncedHandle = debounce(searchSuggestions, 1000)
+    searchField.addEventListener('input', debouncedHandle);
 }
