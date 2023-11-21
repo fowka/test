@@ -5,47 +5,13 @@
     <form action="{{ path('report_index') }}">
         <table class="table table-borderless w-auto">
             <tbody>
-            <tr>
-                <td><label class="align-middle" for="MATNR">Материал (номер)</label></td>
-                <td><input class="form-control" id="MATNR" name="MATNR[main]"></td>
-                <td><button type="button" class="btn btn-light" data-id="MATNR">...</button></td>
-            </tr>
-            <tr>
-                <td><label class="align-middle" for="ERSDA">Дата создания</label></td>
-                <td><input class="form-control" id="ERSDA" name="ERSDA[main]"></td>
-                <td><button type="button" class="btn btn-light" data-id="ERSDA">...</button></td>
-            </tr>
-            <tr>
-                <td><label class="align-middle" for="MATKL">Группа</label></td>
-                <td><input class="form-control" id="MATKL" name="MATKL[main]"></td>
-                <td><button type="button" class="btn btn-light" data-id="MATKL">...</button></td>
-            </tr>
-            <tr>
-                <td><label class="align-middle" for="ERNAM">Имя пользователя</label></td>
-                <td><input class="form-control" id="ERNAM" name="ERNAM[main]"></td>
-                <td><button type="button" class="btn btn-light" data-id="ERNAM">...</button></td>
-            </tr>
-            <tr>
-                <td><label class="align-middle" for="MTART">Вид материала</label></td>
-                <td><input class="form-control" id="MTART" name="MTART[main]"></td>
-                <td><button type="button" class="btn btn-light" data-id="MTART">...</button></td>
-            </tr>
-            <tr>
-                <td><label class="align-middle" for="MAKTX">Наименование</label></td>
-                <td>
-                    <input class="form-control" id="MAKTX" name="MAKTX[main]">
-                    <div class="form-check">
-                        <input class="form-check-input" id="name_suggestion" type="checkbox">
-                        <label for="name_suggestion" class="form-check-label">Гибкий поиск</label>
-                    </div>
-                </td>
-                <td><button type="button" class="btn btn-light" data-id="MAKTX">...</button></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td id="search-result"></td>
-                <td></td>
-            </tr>
+            {% include 'main/simple-field.html.twig' with { slug: 'MATNR', label: 'Материал (номер)' } only %}
+            {% include 'main/simple-field.html.twig' with { slug: 'ERSDA', label: 'Дата создания' } only %}
+            {% include 'main/simple-field.html.twig' with { slug: 'MATKL', label: 'Группа' } only %}
+            {% include 'main/simple-field.html.twig' with { slug: 'ERNAM', label: 'Имя пользователя' } only %}
+            {% include 'main/simple-field.html.twig' with { slug: 'MTART', label: 'Вид материала' } only %}
+            {% include 'main/name-field.html.twig' with { slug: 'MAKTX', label: 'Наименование' } only %}
+            {% include 'main/search-result.html.twig' %}
             </tbody>
         </table>
         <button type="submit" class="btn btn-primary">Открыть отчёт</button>
