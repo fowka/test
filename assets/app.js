@@ -55,9 +55,22 @@ if (nameSuggestion) {
         });
     }
     function afterModalClose(e) {
-        // TODO If applied and fields is not empty, mark extended button as color
-        // TODO If applied and fields is empty, unmark extended button
-        if (!applyRequired) {
+        if (applyRequired) {
+            let counter = 0;
+            e.target.querySelectorAll('input').forEach(function (node) {
+                if (node.value) {
+                    counter++;
+                }
+            });
+            let extendedButton = document.querySelector('button[data-form="' + e.target.id + '"]');
+            if (counter) {
+                extendedButton.classList.remove('btn-light');
+                extendedButton.classList.add('btn-warning');
+            } else {
+                extendedButton.classList.add('btn-light');
+                extendedButton.classList.remove('btn-warning');
+            }
+        } else {
             for (const [key, value] of Object.entries(filterData)) {
                 let input = e.target.querySelector('input[name="' + key + '"]');
                 input.value = value;
