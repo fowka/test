@@ -49,6 +49,16 @@ if (nameSuggestion) {
             });
         });
     }
+    function beforeModalOpen(e) {
+        // TODO Set filterData from fields
+        console.log('open ' + e.target.id)
+    }
+    function afterModalClose(e) {
+        console.log('close ' + e.target.id)
+        // TODO If cancelled, restore fields from filterData
+        // TODO If applied and fields is not empty, mark extended button as color
+        // TODO If applied and fields is empty, unmark extended button
+   }
     let nameSuggestionStatus = false;
     nameSuggestion.addEventListener('input', function (e) {
         nameSuggestionStatus = nameSuggestion.checked;
@@ -60,4 +70,9 @@ if (nameSuggestion) {
     let searchField = document.getElementById('MAKTX');
     const debouncedHandle = debounce(searchSuggestions, 1000)
     searchField.addEventListener('input', debouncedHandle);
+    let filterData = [];
+    document.querySelectorAll('.modal').forEach(function (node) {
+        node.addEventListener('show.bs.modal', beforeModalOpen);
+        node.addEventListener('hidden.bs.modal', afterModalClose);
+    });
 }
