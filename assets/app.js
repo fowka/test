@@ -110,6 +110,8 @@ if (nameSuggestion) {
         node.querySelector('.btn-primary').addEventListener('click', saveAndCloseModal);
     });
     document.addEventListener('DOMContentLoaded', function () {
-        console.log('dom');
+        document.querySelectorAll('.modal').forEach(function (modalForm) {
+            highlightActiveFilters(modalForm);
+        });
     });
 }
