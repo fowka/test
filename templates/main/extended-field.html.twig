@@ -20,10 +20,10 @@
                     {% for row in range(1, filterRows) %}
                         <tr>
                             <td>
-                                <label><input class="form-control" id="{{ slug }}" name="{{ slug }}[{{ row }}][from]"></label>
+                                <label><input class="form-control" name="{{ slug }}[{{ row }}][from]"></label>
                             </td>
                             <td>
-                                <label><input class="form-control" id="{{ slug }}" name="{{ slug }}[{{ row }}][to]"></label>
+                                <label><input class="form-control" name="{{ slug }}[{{ row }}][to]"></label>
                             </td>
                         </tr>
                     {% endfor %}

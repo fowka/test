@@ -50,15 +50,28 @@ if (nameSuggestion) {
         });
     }
     function beforeModalOpen(e) {
-        // TODO Set filterData from fields
-        console.log('open ' + e.target.id)
+        e.target.querySelectorAll('input').forEach(function (node) {
+            filterData[node.getAttribute('name')] = node.value;
+        });
     }
     function afterModalClose(e) {
-        console.log('close ' + e.target.id)
-        // TODO If cancelled, restore fields from filterData
         // TODO If applied and fields is not empty, mark extended button as color
         // TODO If applied and fields is empty, unmark extended button
-   }
+        if (!applyRequired) {
+            for (const [key, value] of Object.entries(filterData)) {
+                let input = e.target.querySelector('input[name="' + key + '"]');
+                input.value = value;
+            }
+        }
+        filterData = {};
+        applyRequired = false;
+    }
+    function saveAndCloseModal(e) {
+        applyRequired = true;
+        let modalForm = e.target.closest('.modal');
+        let modal = bootstrap.Modal.getInstance(modalForm);
+        modal.hide();
+    }
     let nameSuggestionStatus = false;
     nameSuggestion.addEventListener('input', function (e) {
         nameSuggestionStatus = nameSuggestion.checked;
@@ -70,9 +83,11 @@ if (nameSuggestion) {
     let searchField = document.getElementById('MAKTX');
     const debouncedHandle = debounce(searchSuggestions, 1000)
     searchField.addEventListener('input', debouncedHandle);
-    let filterData = [];
+    let filterData = {};
+    let applyRequired = false;
     document.querySelectorAll('.modal').forEach(function (node) {
         node.addEventListener('show.bs.modal', beforeModalOpen);
         node.addEventListener('hidden.bs.modal', afterModalClose);
+        node.querySelector('.btn-primary').addEventListener('click', saveAndCloseModal);
     });
 }

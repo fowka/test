@@ -2,7 +2,7 @@
     <td><label class="align-middle" for="{{ slug }}">{{ label }}</label></td>
     <td>
         <input class="form-control" id="{{ slug }}" name="{{ slug }}[0][from]">
-        <input class="form-control" id="{{ slug }}" name="{{ slug }}[0][to]" value="" type="hidden">
+        <input class="form-control" name="{{ slug }}[0][to]" value="" type="hidden">
         {% if suggestion is defined %}
             <div class="form-check">
                 <input class="form-check-input" id="name_suggestion" type="checkbox">
