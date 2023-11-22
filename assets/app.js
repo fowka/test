@@ -54,27 +54,33 @@ if (nameSuggestion) {
             filterData[node.getAttribute('name')] = node.value;
         });
     }
+    function highlightActiveFilters(modalForm) {
+        let counter = 0;
+        modalForm.querySelectorAll('input').forEach(function (node) {
+            if (node.value) {
+                counter++;
+            }
+        });
+        let extendedButton = document.querySelector('button[data-form="' + modalForm.id + '"]');
+        if (counter) {
+            extendedButton.classList.remove('btn-light');
+            extendedButton.classList.add('btn-warning');
+        } else {
+            extendedButton.classList.add('btn-light');
+            extendedButton.classList.remove('btn-warning');
+        }
+    }
+    function restoreInputValues(modalForm) {
+        for (const [key, value] of Object.entries(filterData)) {
+            let input = modalForm.querySelector('input[name="' + key + '"]');
+            input.value = value;
+        }
+    }
     function afterModalClose(e) {
         if (applyRequired) {
-            let counter = 0;
-            e.target.querySelectorAll('input').forEach(function (node) {
-                if (node.value) {
-                    counter++;
-                }
-            });
-            let extendedButton = document.querySelector('button[data-form="' + e.target.id + '"]');
-            if (counter) {
-                extendedButton.classList.remove('btn-light');
-                extendedButton.classList.add('btn-warning');
-            } else {
-                extendedButton.classList.add('btn-light');
-                extendedButton.classList.remove('btn-warning');
-            }
+            highlightActiveFilters(e.target);
         } else {
-            for (const [key, value] of Object.entries(filterData)) {
-                let input = e.target.querySelector('input[name="' + key + '"]');
-                input.value = value;
-            }
+            restoreInputValues(e.target);
         }
         filterData = {};
         applyRequired = false;
@@ -102,5 +108,8 @@ if (nameSuggestion) {
         node.addEventListener('show.bs.modal', beforeModalOpen);
         node.addEventListener('hidden.bs.modal', afterModalClose);
         node.querySelector('.btn-primary').addEventListener('click', saveAndCloseModal);
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log('dom');
     });
 }
