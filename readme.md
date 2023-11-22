@@ -1,10 +1,11 @@
 # Тестовое задание
 ## Запуск
 ```
-symfony server:start
+docker compose up
 ```
-## Авторизация
+## Вход
 ```
+Site: http://localhost:8001/
 User: test@email.com
 Pass: 123test456test789
 ```
