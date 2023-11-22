@@ -5,7 +5,7 @@ WORKDIR /usr/src/dkirillov
 
 RUN apt-get -y update
 RUN apt-get -y upgrade
-RUN apt-get -y install libzip-dev zip unzip # git
+RUN apt-get -y install libzip-dev unzip # git zip
 
 RUN apt-get install -y ca-certificates curl gnupg
 RUN mkdir -p /etc/apt/keyrings
