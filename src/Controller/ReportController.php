@@ -22,17 +22,15 @@ class ReportController extends AbstractController
             if ($key == self::PAGE_SLUG) {
                 continue;
             }
-            if (!empty($value['main'])) {
-                $parameters[$key] = $value['main'];
-            }
+            $parameters[$key] = $value;
         }
-        $rowsAll = $dataRepository->findBy($parameters);
+        $rowsAll = $dataRepository->findByParameters($parameters);
         $pagesAmount = (int) ceil(count($rowsAll) / self::PAGE_ROWS);
         $pages = [];
         for ($pageNumber = 1; $pageNumber <= $pagesAmount; $pageNumber++) {
             $pages[$pageNumber] = $this->generateUrl('report_index', array_merge($parameters, ['page' => $pageNumber]));
         }
-        $rows = $dataRepository->findBy($parameters, null, self::PAGE_ROWS, ($page - 1) * self::PAGE_ROWS);
+        $rows = $dataRepository->findByParameters($parameters, self::PAGE_ROWS, ($page - 1) * self::PAGE_ROWS);
         return $this->render(
             'report/index.html.twig', [
                 'rows' => $rows,
