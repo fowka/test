@@ -125,12 +125,6 @@ if (nameSuggestion) {
         filterData = {};
         applyRequired = false;
     }
-    function saveAndCloseModal(e) {
-        applyRequired = true;
-        let modalForm = e.target.closest('.modal');
-        let modal = bootstrap.Modal.getInstance(modalForm);
-        modal.hide();
-    }
     let nameSuggestionStatus = false;
     nameSuggestion.addEventListener('input', function (e) {
         nameSuggestionStatus = nameSuggestion.checked;
@@ -144,10 +138,19 @@ if (nameSuggestion) {
     searchField.addEventListener('input', debouncedHandle);
     let filterData = {};
     let applyRequired = false;
-    document.querySelectorAll('.modal').forEach(function (node) {
-        node.addEventListener('show.bs.modal', beforeModalOpen);
-        node.addEventListener('hidden.bs.modal', afterModalClose);
-        node.querySelector('.btn-primary').addEventListener('click', saveAndCloseModal);
+    document.querySelectorAll('.modal').forEach(function (modalForm) {
+        modalForm.addEventListener('show.bs.modal', beforeModalOpen);
+        modalForm.addEventListener('hidden.bs.modal', afterModalClose);
+        modalForm.querySelector('.btn-primary').addEventListener('click', function () {
+            applyRequired = true;
+            let modal = bootstrap.Modal.getInstance(modalForm);
+            modal.hide();
+        });
+        modalForm.querySelector('.btn-light').addEventListener('click', function () {
+            modalForm.querySelectorAll('input').forEach(function (node) {
+                node.value = '';
+            });
+        });
     });
     document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.modal').forEach(function (modalForm) {
