@@ -71,6 +71,8 @@ if (nameSuggestion) {
         }
     }
     function handlePasteEvent(modalForm) {
+        let maxRow = 3;
+        let maxColumn = 2;
         modalForm.querySelectorAll('input').forEach(function (node) {
             node.addEventListener('paste', function (e) {
                 e.preventDefault();
@@ -88,7 +90,23 @@ if (nameSuggestion) {
                         data.push(cells);
                     }
                 });
-                console.log(data);
+                let currentRow = parseInt(node.dataset.row);
+                let currentColumn = parseInt(node.dataset.column);
+                let dataRowIndex = 0;
+                let dataColumnIndex = 0;
+                for (let row = currentRow; row <= maxRow; row++) {
+                    dataColumnIndex = 0;
+                    for (let column = currentColumn; column <= maxColumn; column++) {
+                        if (data[dataRowIndex] !== undefined) {
+                            if (data[dataRowIndex][dataColumnIndex] !== undefined) {
+                                let input = modalForm.querySelector('input[data-row="' + row + '"][data-column="' + column + '"]');
+                                input.value = data[dataRowIndex][dataColumnIndex];
+                            }
+                        }
+                        dataColumnIndex++;
+                    }
+                    dataRowIndex++;
+                }
             });
         });
     }
