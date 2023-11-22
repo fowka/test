@@ -1,8 +1,11 @@
 FROM php:8.2-cli
 
+COPY . /usr/src/dkirillov
+WORKDIR /usr/src/dkirillov
+
 RUN apt-get -y update
 RUN apt-get -y upgrade
-RUN apt-get -y install git libzip-dev zip unzip
+RUN apt-get -y install libzip-dev zip unzip # git
 
 RUN apt-get install -y ca-certificates curl gnupg
 RUN mkdir -p /etc/apt/keyrings
@@ -22,9 +25,9 @@ RUN php composer-setup.php
 RUN php -r "unlink('composer-setup.php');"
 RUN mv composer.phar /usr/local/bin/composer
 
-RUN git clone https://github.com/dkirillov-radio/test.git
+# RUN git clone https://github.com/dkirillov-radio/test.git
 
-WORKDIR test
+# WORKDIR test
 RUN composer install && yarn install && yarn run build
 EXPOSE 8000
 CMD ["/root/.symfony5/bin/symfony", "server:start"]
