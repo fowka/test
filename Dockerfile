@@ -23,4 +23,7 @@ RUN php -r "unlink('composer-setup.php');"
 RUN mv composer.phar /usr/local/bin/composer
 
 RUN git clone https://github.com/dkirillov-radio/test.git
-RUN cd test && composer install && yarn install && yarn run build
+
+WORKDIR test
+RUN composer install && yarn install && yarn run build
+CMD ["/root/.symfony5/bin/symfony", "server:start"]
