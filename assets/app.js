@@ -70,6 +70,28 @@ if (nameSuggestion) {
             extendedButton.classList.remove('btn-warning');
         }
     }
+    function handlePasteEvent(modalForm) {
+        modalForm.querySelectorAll('input').forEach(function (node) {
+            node.addEventListener('paste', function (e) {
+                e.preventDefault();
+                let paste =
+                    (e.clipboardData || window.clipboardData)
+                        .getData('text')
+                        .replaceAll("\r\n", "\n")
+                        .replaceAll("\r", "\n");
+                let rows = paste.split("\n");
+                let data = [];
+                rows.forEach(function (row) {
+                    let cleanRow = row.replaceAll("\r", '');
+                    if (cleanRow) {
+                        let cells = cleanRow.split("\t");
+                        data.push(cells);
+                    }
+                });
+                console.log(data);
+            });
+        });
+    }
     function restoreInputValues(modalForm) {
         for (const [key, value] of Object.entries(filterData)) {
             let input = modalForm.querySelector('input[name="' + key + '"]');
@@ -112,6 +134,7 @@ if (nameSuggestion) {
     document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.modal').forEach(function (modalForm) {
             highlightActiveFilters(modalForm);
+            handlePasteEvent(modalForm);
         });
     });
 }
