@@ -25,7 +25,8 @@ class DataRepository extends ServiceEntityRepository
      * @param string $name
      * @return Data[]
      */
-    public function findByName(string $name) {
+    public function findByName(string $name): array
+    {
         return $this
             ->createQueryBuilder('d')
             ->andWhere('d.MAKTX LIKE :name')
@@ -40,7 +41,8 @@ class DataRepository extends ServiceEntityRepository
      * @param int $offset
      * @return Data[]
      */
-    public function findByParameters(array $parameters, int $limit = 0, int $offset = 0) {
+    public function findByParameters(array $parameters, int $limit = 0, int $offset = 0): array
+    {
         $qb = $this->createQueryBuilder('d');
         $queryParameters = [];
         foreach ($parameters as $key => $rows) {

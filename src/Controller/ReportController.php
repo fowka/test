@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Repository\DataRepository;
-use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
