@@ -63,7 +63,7 @@ class DataRepository extends ServiceEntityRepository
                 }
             }
             if ($expressions) {
-                $qb->andWhere($qb->expr()->orX($expressions));
+                $qb->andWhere($qb->expr()->orX(...$expressions));
             }
         }
         foreach ($queryParameters as $parameterName => $parameterValue) {
