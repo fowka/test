@@ -26,4 +26,5 @@ RUN git clone https://github.com/dkirillov-radio/test.git
 
 WORKDIR test
 RUN composer install && yarn install && yarn run build
+EXPOSE 8000
 CMD ["/root/.symfony5/bin/symfony", "server:start"]
